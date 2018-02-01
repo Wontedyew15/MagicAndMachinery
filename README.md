@@ -1,2 +1,2 @@
 # MagicAndMachinery
-A minecraft Plugin
+Adds Magic and machinery into survival minecraft.
