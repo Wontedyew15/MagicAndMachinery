@@ -9,12 +9,29 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class Menus {
 	public static void openMagic(Player p) {
-		Inventory inv = Bukkit.createInventory(null, 54, "�4Magic Manual");
+		Inventory inv = Bukkit.createInventory(null, 54, "§4Magic Manual");
 		
-		ItemStack MagicIcon = new ItemStack(Material.BOOK, 1);
-		ItemMeta MagicMeta = MagicIcon.getItemMeta();
-		MagicMeta.setDisplayName("Example");
-		MagicIcon.setItemMeta(MagicMeta);
+		//Wand Icon
+		ItemStack WandIcon = new ItemStack(Material.STICK, 1);
+		ItemMeta WandMeta = WandIcon.getItemMeta();
+		WandMeta.setDisplayName("§7Wands");
+        	List<String> Wandlore = new ArrayList<String>();
+       		Wandlore.add(" ");
+        	Wandlore.add("§c> Click to open");
+        	WandMeta.setLore(Wandlore);
+        	WandIcon.setItemMeta(WandMeta);
+		
+		//Example Icon
+		ItemStack ExampleIcon = new ItemStack(Material.STONE_AXE, 1);
+		ItemMeta ExampleMeta = ExampleIcon.getItemMeta();
+		ExampleMeta.setDisplayName("§7Example");
+        	List<String> Examplelore = new ArrayList<String>();
+        	Examplelore.add(" ");
+        	Examplelore.add("§c> Click to open");
+        	ExampleMeta.setLore(Examplelore);
+        	ExampleIcon.setItemMeta(ExampleMeta);
+		
+		
 		
 		ItemStack GlassIcon = new ItemStack (Material.STAINED_GLASS_PANE, 1, (byte)7);
 		ItemMeta GlassMeta = GlassIcon.getItemMeta();
@@ -41,14 +58,15 @@ public class Menus {
 		inv.setItem(52, GlassIcon);
 		inv.setItem(53, GlassIcon);
 		
-		inv.setItem(9, MagicIcon);
+		inv.setItem(9, WandIcon);
+		inv.setItem(10, ExampleIcon);
 		
 		p.openInventory(inv);
 		
 		
 	}
 	public static void openMachinery(Player p) {
-		Inventory inv = Bukkit.createInventory(null, 54, "�9Machinery Manual");
+		Inventory inv = Bukkit.createInventory(null, 54, "§9Machinery Manual");
 		
 		ItemStack MachineryIcon = new ItemStack(Material.BOOK, 1);
 		ItemMeta MachineryMeta = MachineryIcon.getItemMeta();
