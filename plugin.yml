@@ -1,6 +1,7 @@
 main: me.kingwonton.main.Main
 version: 1.0
 name: MagicAndMachinery
+authors: [KingWonton, Mathias0903]
  
 commands:
   Manual:
