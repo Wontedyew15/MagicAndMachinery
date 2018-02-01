@@ -17,23 +17,27 @@ import org.bukkit.plugin.java.JavaPlugin;
  
 public class Main extends JavaPlugin implements Listener
 {
+    //When server starts / reloads
     public void onEnable() {
     	PluginManager pm = Bukkit.getServer().getPluginManager();
     	pm.registerEvents(new ListenerClass(), this);
     	this.getLogger().info("Plugin has been started.");
     }
  
+    //when server stops / reloads
     public void onDisable() {
     	this.getLogger().info("Plugin has shut down.");
     }
    
     public boolean onCommand(CommandSender sender, Command cmd, String command, String[] args) {
 		Player p = (Player) sender;
+	//Adds command /manual for both magic and machinery manuals
         if(cmd.getName().equalsIgnoreCase("Manual")) {
             if(sender.hasPermission("mm.Manual")) {
             	String plugin = "[§bMagic And Machinery§f] ";
                 p.sendMessage(plugin + "§aYou have been given both Magic and machinery manuals.");    
                 Material book = Material.ENCHANTED_BOOK;
+		//Magic manual
                 ItemStack magicManual = new ItemStack(book, 1);
                 ItemMeta magicmeta = magicManual.getItemMeta();
                 magicmeta.setDisplayName("§4Magic Manual");
@@ -43,6 +47,7 @@ public class Main extends JavaPlugin implements Listener
                 magicManual.setItemMeta(magicmeta);
                 p.getInventory().addItem(magicManual);
                 
+		//Machinery manual
                 ItemStack machineryManual = new ItemStack(book, 1);
                 ItemMeta machinerymeta = machineryManual.getItemMeta();
                 machinerymeta.setDisplayName("§9Machinery Manual");
