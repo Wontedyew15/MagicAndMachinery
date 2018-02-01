@@ -12,11 +12,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class ListenerClass implements Listener {
-	
+	//opens the gui for either magic or machinery
 	@EventHandler
 	public static void onInteract(PlayerInteractEvent e) {
 		if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-			
+			//opens the gui for magic
 			ItemStack item = e.getItem();
 			if (item.getType().equals(Material.ENCHANTED_BOOK) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
 				if (item.getItemMeta().getDisplayName().equals("§4Magic Manual")) {
@@ -24,6 +24,7 @@ public class ListenerClass implements Listener {
 					Menus.openMagic(p);
 				}
 			}
+			//opens the gui for machinery
 			if (item.getType().equals(Material.ENCHANTED_BOOK) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
 				if (item.getItemMeta().getDisplayName().equals("§9Machinery Manual")) {
 					Player p = e.getPlayer();
@@ -33,7 +34,7 @@ public class ListenerClass implements Listener {
 			
 		}
 	}
-	
+	//stops players from draging things out of the gui
 	@EventHandler
 	public void invDragEvent(InventoryDragEvent e) {
 		Inventory inv = e.getInventory();
@@ -44,7 +45,7 @@ public class ListenerClass implements Listener {
 		}
 		
 	}
-	
+	//checks what slot has been clicked and runs the appriote functions
 	@EventHandler
 	public void invClickEvent(InventoryClickEvent e) {
 		Inventory inv = e.getInventory();
