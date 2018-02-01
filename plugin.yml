@@ -1,0 +1,7 @@
+main: me.kingwonton.main.Main
+version: 1.0
+name: MagicAndMachinery
+ 
+commands:
+  Manual:
+    description: Gives you both the Magic and Machinery manuals.
