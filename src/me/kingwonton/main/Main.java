@@ -38,7 +38,7 @@ public class Main extends JavaPlugin implements Listener
         if(cmd.getName().equalsIgnoreCase("Manual")) {
             if(sender.hasPermission("mm.Manual")) {
             	String plugin = "[§bMagic And Machinery§f] ";
-                p.sendMessage(plugin + "§aYou have been given both Magic and machinery manuals.");    
+                p.sendMessage(plugin + "§aYou have been given both Magic and Machinery manuals.");    
                 Material book = Material.ENCHANTED_BOOK;
 		//Magic manual
                 ItemStack magicManual = new ItemStack(book, 1);
