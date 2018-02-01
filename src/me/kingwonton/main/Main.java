@@ -13,6 +13,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import me.kingwonton.menu.ListenerClass;
  
  
 public class Main extends JavaPlugin implements Listener
@@ -21,7 +23,7 @@ public class Main extends JavaPlugin implements Listener
     public void onEnable() {
     	PluginManager pm = Bukkit.getServer().getPluginManager();
     	pm.registerEvents(new ListenerClass(), this);
-	this.saveDefaultConfig();
+    	this.saveDefaultConfig();
     	this.getLogger().info("Plugin has been started.");
     }
  
