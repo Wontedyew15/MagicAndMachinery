@@ -21,6 +21,7 @@ public class Main extends JavaPlugin implements Listener
     public void onEnable() {
     	PluginManager pm = Bukkit.getServer().getPluginManager();
     	pm.registerEvents(new ListenerClass(), this);
+	this.saveDefaultConfig();
     	this.getLogger().info("Plugin has been started.");
     }
  
