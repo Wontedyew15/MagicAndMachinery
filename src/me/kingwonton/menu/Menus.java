@@ -18,21 +18,21 @@ public class Menus {
 		ItemStack WandIcon = new ItemStack(Material.STICK, 1);
 		ItemMeta WandMeta = WandIcon.getItemMeta();
 		WandMeta.setDisplayName("§7Wands");
-        List<String> Wandlore = new ArrayList<String>();
-        Wandlore.add(" ");
-        Wandlore.add("§c> Click to open");
-        WandMeta.setLore(Wandlore);
-        WandIcon.setItemMeta(WandMeta);
+        	List<String> Wandlore = new ArrayList<String>();
+        	Wandlore.add(" ");
+        	Wandlore.add("§c> Click to open");
+        	WandMeta.setLore(Wandlore);
+        	WandIcon.setItemMeta(WandMeta);
         
 		//Example Icon
 		ItemStack ExampleIcon = new ItemStack(Material.STONE_AXE, 1);
 		ItemMeta ExampleMeta = ExampleIcon.getItemMeta();
 		ExampleMeta.setDisplayName("§7Example");
-        List<String> Examplelore = new ArrayList<String>();
-        Examplelore.add(" ");
-        Examplelore.add("§c> Click to open");
-        ExampleMeta.setLore(Examplelore);
-        ExampleIcon.setItemMeta(ExampleMeta);
+        	List<String> Examplelore = new ArrayList<String>();
+        	Examplelore.add(" ");
+        	Examplelore.add("§c> Click to open");
+        	ExampleMeta.setLore(Examplelore);
+        	ExampleIcon.setItemMeta(ExampleMeta);
         
         
         
@@ -75,11 +75,11 @@ public class Menus {
 		ItemStack TransportationIcon = new ItemStack(Material.MINECART, 1);
 		ItemMeta TransportationMeta = TransportationIcon.getItemMeta();
 		TransportationMeta.setDisplayName("§7Transportation");
-        List<String> Transportationlore = new ArrayList<String>();
-        Transportationlore.add(" ");
-        Transportationlore.add("§c> Click to open");
-        TransportationMeta.setLore(Transportationlore);
-        TransportationIcon.setItemMeta(TransportationMeta);
+        	List<String> Transportationlore = new ArrayList<String>();
+        	Transportationlore.add(" ");
+        	Transportationlore.add("§c> Click to open");
+        	TransportationMeta.setLore(Transportationlore);
+        	TransportationIcon.setItemMeta(TransportationMeta);
 		
 		ItemStack GlassIcon = new ItemStack (Material.STAINED_GLASS_PANE, 1, (byte)7);
 		ItemMeta GlassMeta = GlassIcon.getItemMeta();
@@ -305,4 +305,36 @@ public class Menus {
 		p.openInventory(inv);
 		
 	}
+	
+	public static void openETL (Player p) {
+		Inventory inv = Bukkit.createInventory(null, 54, "§7Enchiridion Translocator");
+		
+		//Glass
+		ItemStack GlassItem = new ItemStack (Material.STAINED_GLASS_PANE, 1, (byte)7);
+		ItemMeta GlassMeta = GlassItem.getItemMeta();
+		GlassMeta.setDisplayName(" ");
+		GlassItem.setItemMeta(GlassMeta);
+		
+		inv.setItem(0, GlassItem);
+		inv.setItem(1, GlassItem);
+		inv.setItem(2, GlassItem);
+		inv.setItem(3, GlassItem);
+		inv.setItem(4, GlassItem);
+		inv.setItem(5, GlassItem);
+		inv.setItem(6, GlassItem);
+		inv.setItem(7, GlassItem);
+		inv.setItem(8, GlassItem);
+		inv.setItem(45, GlassItem);
+		inv.setItem(46, GlassItem);
+		inv.setItem(47, GlassItem);
+		inv.setItem(48, GlassItem);
+		inv.setItem(49, GlassItem);
+		inv.setItem(50, GlassItem);
+		inv.setItem(51, GlassItem);
+		inv.setItem(52, GlassItem);
+		inv.setItem(53, GlassItem);
+		
+		p.openInventory(inv);
+	}
+
 }
