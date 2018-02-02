@@ -1,4 +1,4 @@
-package me.kingwonton.menu;
+package me.kingwonton.main;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -12,53 +12,61 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class ListenerClass implements Listener {
-	//opens the gui for either magic or machinery
+	
 	@EventHandler
 	public static void onInteract(PlayerInteractEvent e) {
 		if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-			//opens the gui for magic
+			
 			ItemStack item = e.getItem();
 			if (item.getType().equals(Material.ENCHANTED_BOOK) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
-				if (item.getItemMeta().getDisplayName().equals("ง4Magic Manual")) {
+				if (item.getItemMeta().getDisplayName().equals("ยง4Magic Manual")) {
 					Player p = e.getPlayer();
 					Menus.openMagic(p);
 				}
 			}
-			//opens the gui for machinery
 			if (item.getType().equals(Material.ENCHANTED_BOOK) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
-				if (item.getItemMeta().getDisplayName().equals("ง9Machinery Manual")) {
+				if (item.getItemMeta().getDisplayName().equals("ยง9Machinery Manual")) {
 					Player p = e.getPlayer();
 					Menus.openMachinery(p);
 				}
 			}
+		}
+		if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+			ItemStack item = e.getItem();
 			
+			if (item.getType().equals(Material.BOOK_AND_QUILL) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
+				if (item.getItemMeta().getDisplayName().equals("ยง7Enchiridion Translocator")) {
+					Player p = e.getPlayer();
+					Menus.openETL(p);
+				}
+			}	
 		}
 	}
-	//stops players from draging things out of the gui
+	
 	@EventHandler
 	public void invDragEvent(InventoryDragEvent e) {
 		Inventory inv = e.getInventory();
 		String name = inv.getName();
-		if (name.equals("ง4Magic Manual") || name.equals("ง9Machinery Manual")) {
+		if (name.equals("ยง4Magic Manual") || name.equals("ยง9Machinery Manual") || name.equals("ยง7Wands") || name.equals("ยง7Construction Bench")) {
 			e.setCancelled(true);
 			return;
 		}
 		
 	}
-	//checks what slot has been clicked and runs the appriote functions
+	
 	@EventHandler
 	public void invClickEvent(InventoryClickEvent e) {
 		Inventory inv = e.getInventory();
 		Player p = (Player) e.getWhoClicked();
 		String name = inv.getName();
-		if (name.equals("ง4Magic Manual")) {
+		if (name.equals("ยง4Magic Manual")) {
 			e.setCancelled(true);
 			int slot = e.getSlot();
 			if (slot < 0) {
 				return;
 			}
 			if (slot == 9) {
-				Menus.openMachinery(p);
+				Menus.openWands(p);
 				return;
 			}
 			else if (slot == 14) {
@@ -69,14 +77,14 @@ public class ListenerClass implements Listener {
 				return;
 			}
 		}
-		else if (name.equals("ง9Machinery Manual")) {
+		else if (name.equals("ยง9Machinery Manual")) {
 			e.setCancelled(true);
 			int slot = e.getSlot();
 			if (slot < 0) {
 				return;
 			}
 			if (slot == 9) {
-				Menus.openMachinery(p);
+				Menus.openTransportation(p);
 				return;
 			}
 			else if (slot == 14) {
@@ -86,8 +94,42 @@ public class ListenerClass implements Listener {
 			else {
 				return;
 			}
+			
 		}
-		
+		else if (name.equals("ยง7Wands")) {
+			e.setCancelled(true);
+			int slot = e.getSlot();
+			if (slot < 0) {
+				return;
+			}
+			if (slot == 9) {
+				return;
+			}
+			else if (slot == 14) {
+				//if you added more slots inside machinery then you would carry on this.
+				return;
+			}
+			else {
+				return;
+			}
+			
+		}
+		else if (name.equals("ยง7Construction Bench")) {
+			e.setCancelled(true);
+			int slot = e.getSlot();
+			if (slot < 0) {
+				return;
+			}
+			if (slot == 9) {
+				return;
+			}
+			else if (slot == 14) {
+				//if you added more slots inside machinery then you would carry on this.
+				return;
+			}
+			else {
+				return;
+			}	
+		}	
 	}
-
 }
