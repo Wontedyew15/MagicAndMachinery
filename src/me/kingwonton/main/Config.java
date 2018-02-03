@@ -8,8 +8,23 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
-
-
+//this one is easy to explain how to use then what the diffrent things do
+//so to make a new config og find a already made one you need to use this
+//Config c = new Config(folder, nameofconfig, plugin); 
+//this will check if the folder and config is already made if they arent it will make them. it also sets the vairbal for refence
+//folder is optinal and if you remove it so you only have Config c = new Config(nameofconfig, plugin); 
+//it will just create it in the getdatafolder(in other words the standart one)
+//also you can change the c to anything just make sure to change it in the other methods, so if you changed it to menuconfig
+//you would need to change c.set(path, value) to menuconfig.set(path, value)
+//now that you have the config made/found it you can easylige set, get and save values to it
+//simply use:
+//c.set(path, value); 
+//path could be menu.invsize also it must be in string format!(aka it needs to be surrond by "")
+//value is well the value you wan save to that path
+//c.save(); saves the config, use after setting youre values
+//c.getConfig(); Return the config so that you can use it for example to get a boolean like this
+//boolean unlocked = c.getConfig().getBoolean(path);
+//if you have any qustions ask mathias0903
 public class Config {
 	private final Plugin PLUGIN;
 	private final String FILENAME;
