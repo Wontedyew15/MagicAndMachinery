@@ -1,29 +1,47 @@
 package me.kingwonton.main;
- 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.kingwonton.command.manual;
+import me.kingwonton.magic.ArcaneCraftingTable;
+import me.kingwonton.magic.portal;
 import me.kingwonton.menu.ListenerClass;
+import me.kingwonton.multiblock.MultiBlockFactory;
  
  
-public class Main extends JavaPlugin implements Listener
+public class Main extends JavaPlugin
 {
     //When server starts / reloads
+	private static Main instance;
+	
     public void onEnable() {
+    	this.getLogger().info("The Plugin is Loading");
     	PluginManager pm = Bukkit.getServer().getPluginManager();
     	pm.registerEvents(new ListenerClass(), this);
-    	this.saveDefaultConfig();
+    	super.onEnable();
+    	this.getLogger().info("registrering Multiblocks:");
+    	MultiBlockFactory.INSTANCE.register(this, portal.class);
+    	MultiBlockFactory.INSTANCE.register(this, ArcaneCraftingTable.class);
+    	instance = this;
+    	this.getLogger().info("registrering recipes for Arcane Crafting Table");
+		ItemStack stick = new ItemStack(Material.STICK);
+    	ItemStack stone = new ItemStack(Material.STONE);
+    	recipedetctor.registerArcaneRecipe(stick, stick, stick, stick, stick, stick, stick, stick, stick, stone);
+    	recipedetctor.registerArcaneRecipe(stone, stone, stone, stone, stone, stone, stone, stone, stone, stick);
+    	this.getLogger().info("recipes done");
+    	this.getLogger().info("setting up commands:");
+    	this.getCommand("manual").setExecutor(new manual());
+    	this.getLogger().info("finshed command /manuel");
+    	this.getLogger().info("setting up config");
+    	Config c = new Config("Config", this);
+		c.set("enabled.portal", true);
+		c.save();
+		this.getLogger().info("done");
     	this.getLogger().info("Plugin has been started.");
     }
  
@@ -31,38 +49,7 @@ public class Main extends JavaPlugin implements Listener
     public void onDisable() {
     	this.getLogger().info("Plugin has shut down.");
     }
-   
-    public boolean onCommand(CommandSender sender, Command cmd, String command, String[] args) {
-		Player p = (Player) sender;
-	//Adds command /manual for both magic and machinery manuals
-        if(cmd.getName().equalsIgnoreCase("Manual")) {
-            if(sender.hasPermission("mm.Manual")) {
-            	String plugin = "[§bMagic And Machinery§f] ";
-                p.sendMessage(plugin + "§aYou have been given both Magic and Machinery manuals.");    
-                Material book = Material.ENCHANTED_BOOK;
-		//Magic manual
-                ItemStack magicManual = new ItemStack(book, 1);
-                ItemMeta magicmeta = magicManual.getItemMeta();
-                magicmeta.setDisplayName("§4Magic Manual");
-                List<String> Magiclore = new ArrayList<String>();
-                Magiclore.add("§cRight Click §8⇨ §7Browse Items");
-                magicmeta.setLore(Magiclore);
-                magicManual.setItemMeta(magicmeta);
-                p.getInventory().addItem(magicManual);
-                
-		//Machinery manual
-                ItemStack machineryManual = new ItemStack(book, 1);
-                ItemMeta machinerymeta = machineryManual.getItemMeta();
-                machinerymeta.setDisplayName("§9Machinery Manual");
-                List<String> Machinerylore = new ArrayList<String>();
-                Machinerylore.add("§bRight Click §8⇨ §7Browse Items");
-                machinerymeta.setLore(Machinerylore);
-                machineryManual.setItemMeta(machinerymeta);
-                p.getInventory().addItem(machineryManual);
-            }
-        return true;
-    }
-       
-    return false;
-    }
+    public static Main getInstance() {
+    	return instance;
+    	}
 }

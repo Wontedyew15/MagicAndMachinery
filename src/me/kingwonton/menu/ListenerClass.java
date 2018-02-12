@@ -1,4 +1,4 @@
-package me.kingwonton.main;
+package me.kingwonton.menu;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -15,31 +15,35 @@ public class ListenerClass implements Listener {
 	
 	@EventHandler
 	public static void onInteract(PlayerInteractEvent e) {
-		if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-			
-			ItemStack item = e.getItem();
-			if (item.getType().equals(Material.ENCHANTED_BOOK) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
-				if (item.getItemMeta().getDisplayName().equals("ยง4Magic Manual")) {
-					Player p = e.getPlayer();
-					Menus.openMagic(p);
+		if (e.getAction() != null) {
+			if (e.getAction()==(Action.RIGHT_CLICK_AIR) || e.getAction()==(Action.RIGHT_CLICK_BLOCK)) {
+				ItemStack item = e.getItem();
+				if (e.getItem() != null) {
+				if (item.getType().equals(Material.ENCHANTED_BOOK) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
+					if (item.getItemMeta().getDisplayName().equals("ง4Magic Manual")) {
+						Player p = e.getPlayer();
+						Menus.openMagic(p);
+					}
+				}
+				if (item.getType().equals(Material.ENCHANTED_BOOK) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
+					if (item.getItemMeta().getDisplayName().equals("ง9Machinery Manual")) {
+						Player p = e.getPlayer();
+						Menus.openMachinery(p);
+					}
 				}
 			}
-			if (item.getType().equals(Material.ENCHANTED_BOOK) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
-				if (item.getItemMeta().getDisplayName().equals("ยง9Machinery Manual")) {
-					Player p = e.getPlayer();
-					Menus.openMachinery(p);
-				}
 			}
-		}
-		if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-			ItemStack item = e.getItem();
-			
-			if (item.getType().equals(Material.BOOK_AND_QUILL) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
-				if (item.getItemMeta().getDisplayName().equals("ยง7Enchiridion Translocator")) {
-					Player p = e.getPlayer();
-					Menus.openETL(p);
-				}
-			}	
+			if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+				ItemStack item = e.getItem();
+				if (e.getItem() != null) {
+				if (item.getType().equals(Material.BOOK_AND_QUILL) && item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
+					if (item.getItemMeta().getDisplayName().equals("ง7Enchiridion Translocator")) {
+						Player p = e.getPlayer();
+						Menus.openETL(p);
+					}
+				}	
+			}
+			}
 		}
 	}
 	
@@ -47,7 +51,7 @@ public class ListenerClass implements Listener {
 	public void invDragEvent(InventoryDragEvent e) {
 		Inventory inv = e.getInventory();
 		String name = inv.getName();
-		if (name.equals("ยง4Magic Manual") || name.equals("ยง9Machinery Manual") || name.equals("ยง7Wands") || name.equals("ยง7Construction Bench")) {
+		if (name.equals("ง4Magic Manual") || name.equals("ง9Machinery Manual") || name.equals("ง7Wands") || name.equals("ง7Construction Bench")) {
 			e.setCancelled(true);
 			return;
 		}
@@ -59,7 +63,7 @@ public class ListenerClass implements Listener {
 		Inventory inv = e.getInventory();
 		Player p = (Player) e.getWhoClicked();
 		String name = inv.getName();
-		if (name.equals("ยง4Magic Manual")) {
+		if (name.equals("ง4Magic Manual")) {
 			e.setCancelled(true);
 			int slot = e.getSlot();
 			if (slot < 0) {
@@ -77,7 +81,7 @@ public class ListenerClass implements Listener {
 				return;
 			}
 		}
-		else if (name.equals("ยง9Machinery Manual")) {
+		else if (name.equals("ง9Machinery Manual")) {
 			e.setCancelled(true);
 			int slot = e.getSlot();
 			if (slot < 0) {
@@ -96,7 +100,7 @@ public class ListenerClass implements Listener {
 			}
 			
 		}
-		else if (name.equals("ยง7Wands")) {
+		else if (name.equals("ง7Wands")) {
 			e.setCancelled(true);
 			int slot = e.getSlot();
 			if (slot < 0) {
@@ -114,22 +118,6 @@ public class ListenerClass implements Listener {
 			}
 			
 		}
-		else if (name.equals("ยง7Construction Bench")) {
-			e.setCancelled(true);
-			int slot = e.getSlot();
-			if (slot < 0) {
-				return;
-			}
-			if (slot == 9) {
-				return;
-			}
-			else if (slot == 14) {
-				//if you added more slots inside machinery then you would carry on this.
-				return;
-			}
-			else {
-				return;
-			}	
-		}	
 	}
 }
+
